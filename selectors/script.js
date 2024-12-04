@@ -24,4 +24,9 @@
 // const ul = document.querySelector("ul");
 // ul.remove();
 
-// 
+// replace child
+const list = document.querySelector("ul");
+const childToChange = list.children[4];
+const newLi = document.createElement("li");
+newLi.textContent = "Harsh Beniwal";
+list.replaceChild(newLi, childToChange);
