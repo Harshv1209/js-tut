@@ -1,20 +1,15 @@
-//get element by TagName
-// var a= document.getElementsByTagName("li");
-// console.log(a)
+// traverse the DOM
 
-//getElementById
-// var a= document.getElementById("hero");
-// console.log(a)
+//Par element
+// var parent = document.querySelector('ul');
+// var p = parent.parentElement;
+// console.log(p);
 
-//getElementsByClassName
-var a = document.getElementsByClassName("hero");
-console.log(a);
+//previous element siblings
 
-//querySelector
-var a = document.querySelector(".hero");
-console.log(a);
 
-//querySelectorAll
+//children
+var child = document.querySelector('ul');
 
-var a = document.querySelectorAll("li");
-console.log(a);
+console.log(child.children);
+console.log(child.childNodes);
