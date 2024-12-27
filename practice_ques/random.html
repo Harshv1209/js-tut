@@ -6,14 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <button onclick="factorial(6)">Click</button>
+    <button onclick="random(50,100)">Click</button>
     <script>
-        function factorial(a) {
-            var fact =1;
-            for(var i=1; i<=a; i++) {
-                fact = fact*i;
-            }
-            console.log(fact);
+        function random(min,max) {
+            console.log(Math.floor(Math.random()*(max-min+1)+min));
         }
     </script>
 </body>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arr = [10, 20, 30, 40, 50];
+
+      function large(arr) {
+        return arr.reduce((max, current) => {
+          return current > max ? current : max;
+        });
+      }
+
+      let harsh = large(arr);
+      console.log(harsh);
+    </script>
+  </body>
+</html>
