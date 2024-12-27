@@ -4,11 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        #container{
+            width:400px;
+            height:400px;
+            background: #99B89B;
+            position: relative;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+        #inside{
+            height: 50px;
+            width:  50px;
+            background: red; position: absolute;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Drop X Out</h1>
-  <script src="script.js"></script>
-   
+    <div id="container">
+        <div id="inside"></div>
+    </div>
+    <p><button onclick="mymove()">Click</button></p>
+    <script>
+        function mymove(){
+            let pos=0;
+            const elem = document.getElementById("inside");
+            const id = setInterval(frame, 10);
+            function frame(){
+                if(pos==350) clearInterval(id);
+                pos++;
+                elem.style.top= pos + "px";
+                elem.style.left= pos + "px";
+            }
+        }
+    </script>
 </body>
 </html>
