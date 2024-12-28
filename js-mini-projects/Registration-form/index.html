@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      body {
+        background-color: orange;
+      }
+      #form {
+        width: 500px;
+        margin: 20vh auto 0 auto;
+        padding: 50px;
+        background-color: white;
+        border-radius: 5px;
+        font-size: 15px;
+      }
+      h1 {
+        border-bottom: 1px solid black;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .form-control {
+        display: flex;
+        flex-direction: column;
+      }
+      .form-control input {
+        border: 2px solid #f0f0f0;
+        border-radius: 4px;
+        display: block;
+        font-size: 12px;
+        padding: 14px;
+        width: 100%;
+      }
+
+      #form #btn {
+        padding: 10px;
+        margin-top: 10px;
+        background-color: orange;
+        width: 100%;
+        border: none !important;
+        color: white;
+        border-radius: 10px;
+      }
+      .error {
+        color: #ff8360 !important;
+        font-size: 12px;
+        height: 13px;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <form class="form" id="form">
+        <h1>Registration Form</h1>
+        <div class="form-control">
+          <label>UserName:</label>
+          <input type="text" name="" id="username" />
+          <span class="error"></span>
+        </div>
+        <div class="form-control">
+          <label>Email:</label>
+          <input type="text" name="" id="email" />
+          <span class="error"></span>
+        </div>
+        <div class="form-control">
+          <label>Password:</label>
+          <input type="text" name="" id="password" />
+          <span class="error"></span>
+        </div>
+        <div class="form-control">
+          <label>Confirm Password:</label>
+          <input type="text" name="" id="confirmpassword" />
+          <span class="error"></span>
+        </div>
+        <input type="submit" id="btn" value="Submit" name="" />
+      </form>
+      <script>
+        const form = document.getElementById("form");
+        const username = document.getElementById("username");
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const confirmpassword = document.getElementById("confirmpassword");
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          validateInputs();
+        });
+
+        const validateInputs = () => {
+          const usernameValue = username.value.trim();
+          const emailValue = email.value.trim();
+          const passwordValue = password.value.trim();
+          const confirmpasswordValue = confirmpassword.value.trim();
+
+          // Username validation
+          if (usernameValue === "") {
+            setError(username, "Username is required");
+          } else {
+            setSuccess(username);
+          }
+
+          // Email validation
+          if (emailValue === "") {
+            setError(email, "Email is required");
+          } else if (!isValidEmail(emailValue)) {
+            setError(email, "Enter a valid email address");
+          } else {
+            setSuccess(email);
+          }
+
+          // Password validation
+          if (passwordValue === "") {
+            setError(password, "Password is required");
+          } else if (passwordValue.length < 8) {
+            setError(password, "Password must be at least 8 characters");
+          } else {
+            setSuccess(password);
+          }
+
+          // Confirm password validation
+          if (confirmpasswordValue === "") {
+            setError(confirmpassword, "Confirm password is required");
+          } else if (confirmpasswordValue !== passwordValue) {
+            setError(confirmpassword, "Passwords do not match");
+          } else {
+            setSuccess(confirmpassword);
+          }
+        };
+
+        const setError = (element, message) => {
+          const inputControl = element.parentElement;
+          const errorDisplay = inputControl.querySelector(".error");
+          errorDisplay.innerText = message;
+          element.style.borderColor = "#ff8360";
+        };
+
+        const setSuccess = (element) => {
+          const inputControl = element.parentElement;
+          const errorDisplay = inputControl.querySelector(".error");
+          errorDisplay.innerText = "";
+          element.style.borderColor = "#28a745";
+        };
+
+        // Email validation regex
+        const isValidEmail = (email) => {
+          const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return re.test(email);
+        };
+      </script>
+    </div>
+  </body>
+</html>
