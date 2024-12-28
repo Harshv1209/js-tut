@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function makeApiCall(url, callback) {
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => callback(data))
+          .catch((error) => console.log(error));
+      }
+      function handleData(data) {
+        console.log("Processed data", data);
+      }
+      function main() {
+        let api1 = "https://dummyjson.com/posts/search?q=love";
+        let api2 = "https://dummyjson.com/posts/1";
+
+        makeApiCall(api1, handleData);
+        makeApiCall(api2, handleData);
+      }
+      main();
+    </script>
+  </body>
+</html>
